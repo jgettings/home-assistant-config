@@ -1,0 +1,31 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+# ffmpeg integration, see https://www.home-assistant.io/integrations/ffmpeg/
+ffmpeg:
+# Stream integration, see https://www.home-assistant.io/integrations/stream
+stream:
+
+amcrest: !include cameras.yaml
+
+wemo:
+  discovery: true
+  static:
+    - !secret wemo_living_room_ip
+    - !secret wemo_kitchen_ip
+
+
+## TODO make camera notifications less sensitive at night
+## TODO only notify back yard when away
+
+# garbage day
+# pay bills

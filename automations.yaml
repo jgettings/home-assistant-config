@@ -1,0 +1,58 @@
+- id: '1688949281746'
+  alias: Notify on driveway motion
+  description: ''
+  use_blueprint:
+    path: vorion/send-camera-snapshot-notification-on-motion.yaml
+    input:
+      motion_sensor: binary_sensor.driveway_cam_motion_detected
+      camera: camera.driveway_cam
+      notify_device: c912a4836ddece53925333ce20def0b8
+      notification_title: Motion detected in driveway
+      notification_message: Motion detected in driveway
+- id: '1688950165670'
+  alias: Notify on front porch motion
+  description: ''
+  use_blueprint:
+    path: vorion/send-camera-snapshot-notification-on-motion.yaml
+    input:
+      motion_sensor: binary_sensor.front_porch_cam_motion_detected
+      camera: camera.front_porch_cam
+      notify_device: c912a4836ddece53925333ce20def0b8
+      notification_title: Motion detected on front porch
+      notification_message: Front porch camera detected movement!
+- id: '1688950197059'
+  alias: Notify on back yard camera motion
+  description: ''
+  use_blueprint:
+    path: vorion/send-camera-snapshot-notification-on-motion.yaml
+    input:
+      motion_sensor: binary_sensor.back_yard_cam_motion_detected
+      camera: camera.back_yard_cam
+      notify_device: c912a4836ddece53925333ce20def0b8
+      notification_title: Motion detected in yard
+      notification_message: Back yard camera detected movement!
+- id: '1690595752570'
+  alias: Monthly house tasks
+  description: ''
+  use_blueprint:
+    path: mine/add_to_shopping_list.yaml
+    input:
+      day_of_month: 1
+      items: 'Clean robot vacuum and change bag
+
+        Change Furnace Filter
+
+        Flush whole house water filter
+
+        Run robot vacuum upstairs
+
+        Pay Bills'
+- id: '1690595804593'
+  alias: Garbage day
+  description: ''
+  use_blueprint:
+    path: mine/add_to_shopping_list.yaml
+    input:
+      time_of_day: '20:00:00'
+      day_of_week: 3
+      items: Garbage day

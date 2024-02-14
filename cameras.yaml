@@ -1,0 +1,40 @@
+# https://www.home-assistant.io/integrations/amcrest/
+# https://community.home-assistant.io/t/amcrest-ip2m-841b-doesnt-work-in-ha/160154/4
+
+# rtsp://user:pw@ip:554/cam/realmonitor?channel=1&subtype=0
+
+# IP2M-852W
+- name: front-porch-cam
+  host: !secret amcrest_front_cam_ip
+  username: !secret amcrest_user
+  password: !secret amcrest_password
+  resolution: high
+  stream_source: rtsp
+  binary_sensors:
+    - motion_detected
+    - audio_detected
+    - online
+# IP2M-852W
+- name: back-yard-cam
+  host: !secret amcrest_yard_cam_ip
+  username: !secret amcrest_user
+  password: !secret amcrest_password
+  resolution: high
+  stream_source: rtsp
+  binary_sensors:
+    - motion_detected
+    - audio_detected
+    - online
+# IP2M-841B
+- name: driveway-cam
+  host: !secret amcrest_driveway_cam_ip
+  username: !secret amcrest_user
+  password: !secret amcrest_password
+  resolution: high
+  stream_source: rtsp
+  binary_sensors:
+    - motion_detected
+    - audio_detected
+    - online
+  sensors:
+    - ptz_preset
