@@ -43,7 +43,7 @@ condition:
 - condition: template
   value_template: '{{ day_of_month|length == 0 or now().day == day_of_month }}'
 - condition: template
-  value_template: '{{ day_of_week|length == 0 or now().weekday == day_of_week }}'
+  value_template: '{{ day_of_week|length == 0 or now().weekday() == day_of_week }}'
 action:
   repeat:
     for_each: '{{ itemsList.split("\n") }}'
