@@ -2,6 +2,10 @@
 # Loads default set of integrations. Do not remove.
 default_config:
 
+homeassistant:
+  external_url: !secret external_url
+  internal_url: !secret internal_url
+
 # Load frontend themes from the themes folder
 frontend:
   themes: !include_dir_merge_named themes
@@ -22,6 +26,15 @@ wemo:
   static:
     - !secret wemo_living_room_ip
     - !secret wemo_kitchen_ip
+
+# Cloudflare reverse proxy
+http:
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - !secret local_lan_ip
+    - !secret docker_lan_ip
 
 
 ## TODO make camera notifications less sensitive at night
