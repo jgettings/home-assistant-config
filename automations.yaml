@@ -56,3 +56,32 @@
       time_of_day: '20:00:00'
       day_of_week: 3
       items: Garbage day
+- id: '1709602687054'
+  alias: Frigate Notification Porch Person
+  description: ''
+  use_blueprint:
+    path: SgtBatten/Stable.yaml
+    input:
+      camera: camera.porch
+      notify_device: c912a4836ddece53925333ce20def0b8
+      alert_once: true
+      critical: 'true'
+      update_thumbnail: true
+      zone_filter: true
+      zones: []
+      labels:
+      - person
+      cooldown: 160
+- id: '1709647869626'
+  alias: Frigate Notifications Person in Yard
+  description: ''
+  use_blueprint:
+    path: SgtBatten/Stable.yaml
+    input:
+      camera: camera.yard
+      notify_device: c912a4836ddece53925333ce20def0b8
+      alert_once: true
+      labels:
+      - person
+      zone_multi: false
+      zone_filter: true
