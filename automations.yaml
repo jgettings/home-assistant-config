@@ -88,3 +88,23 @@
       - person
       zone_multi: false
       zone_filter: true
+- id: '1710947464947'
+  alias: Clear todo items automatically
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - todo.home_tasks
+  condition: []
+  action:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - service: todo.remove_completed_items
+    metadata: {}
+    data: {}
+    target:
+      entity_id: todo.home_tasks
+  mode: single
