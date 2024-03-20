@@ -1,6 +1,6 @@
 blueprint:
-  name: Add to Shopping List
-  description: Add items to the shopping_list integration on a schedule
+  name: Add to To-do List
+  description: Add items to the to-do list integration on a schedule
   domain: automation
   author: Jen Gettings
   input:
@@ -32,6 +32,14 @@ blueprint:
         text:
           multiline: true
       default: Enter text to add to the list
+    list: 
+      name: List to add items to
+      selector:
+        entity: 
+          multiple: false
+          filter: 
+            - domain: todo
+      default: todo.shopping_list
 trigger:
 - platform: time
   at: !input time_of_day
@@ -41,16 +49,18 @@ variables:
   itemsList: !input items
 condition:
 - condition: template
-  value_template: '{{ day_of_month|length == 0 or now().day == day_of_month }}'
+  value_template: '{{ day_of_month|string|length == 0 or now().day == day_of_month }}'
 - condition: template
-  value_template: '{{ day_of_week|length == 0 or now().weekday() == day_of_week }}'
+  value_template: '{{ day_of_week|string|length == 0 or now().weekday() == day_of_week }}'
 action:
   repeat:
     for_each: '{{ itemsList.split("\n") }}'
     sequence:
-      - service: shopping_list.add_item
+      - service: todo.add_item
         data:
-          name: "{{ repeat.item }}"
+          item: '{{ repeat.item }}'
+        target:
+          entity_id: !input list
 mode: single
 
 # TODO add notification
