@@ -35,8 +35,9 @@
   alias: Monthly house tasks
   description: ''
   use_blueprint:
-    path: mine/add_to_shopping_list.yaml
+    path: mine/add_to_todo_list.yaml
     input:
+      time_of_day: 09:00:00
       day_of_month: 1
       items: 'Clean robot vacuum and change bag
 
@@ -47,17 +48,16 @@
         Run robot vacuum upstairs
 
         Pay Bills'
-      time_of_day: 09:00:00
       list: todo.home_tasks
 - id: '1690595804593'
   alias: Garbage day
   description: ''
   use_blueprint:
-    path: mine/add_to_shopping_list.yaml
+    path: mine/add_to_todo_list.yaml
     input:
       time_of_day: '18:00:00'
       day_of_week: 3
-      items: Garbage day
+      items: Take out trash
       list: todo.home_tasks
 - id: '1709602687054'
   alias: Frigate Notification Porch Person
