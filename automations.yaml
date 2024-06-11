@@ -49,6 +49,7 @@
 
         Pay Bills'
       list: todo.home_tasks
+      trigger_type: day_of_month_type
 - id: '1690595804593'
   alias: Garbage day
   description: ''
@@ -59,6 +60,7 @@
       day_of_week: 3
       items: Take out trash
       list: todo.home_tasks
+      trigger_type: day_of_week_type
 - id: '1709602687054'
   alias: Frigate Notification Porch Person
   description: ''
@@ -71,10 +73,12 @@
       critical: 'true'
       update_thumbnail: true
       zone_filter: true
-      zones: []
-      labels:
-      - person
+      zones:
+      - porch
+      labels: []
       cooldown: 160
+      debug: true
+      state_filter: false
 - id: '1709647869626'
   alias: Frigate Notifications Person in Yard
   description: ''

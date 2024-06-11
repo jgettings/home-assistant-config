@@ -10,9 +10,19 @@ blueprint:
       selector: 
         time:
       default: 07:00:00
+    trigger_type:
+      name: Trigger type
+      description: Choose between day of week or day of Month
+      selector:
+        select: 
+          options:
+            - label: Day of Month
+              value: day_of_month_type
+            - label: Day of Week
+              value: day_of_week_type
     day_of_month:
       name: Day of Month
-      description: Which day the item should be added to the List. Optional - if omitted it will run daily
+      description: Which day the item should be added to the List. Not used when trigger type is "Day of Week".
       selector:
         number:
           min: 1
@@ -20,7 +30,7 @@ blueprint:
       default: {}
     day_of_week:
       name: Day of Week
-      description: Which day the item should be added to the list. 0 is Monday and 6 is Sunday. Optional - if omitted it will run daily
+      description: Which day the item should be added to the list. 0 is Monday and 6 is Sunday. Not used when trigger type is "Day of Month".
       selector: 
         number:
           min: 0
@@ -44,14 +54,15 @@ trigger:
 - platform: time
   at: !input time_of_day
 variables:
+  trigger_type: !input trigger_type
   day_of_month: !input day_of_month
   day_of_week: !input day_of_week
   itemsList: !input items
 condition:
 - condition: template
-  value_template: '{{ day_of_month|string|length == 0 or now().day == day_of_month }}'
+  value_template: '{{ trigger_type == "day_of_week_type" or now().day == day_of_month }}'
 - condition: template
-  value_template: '{{ day_of_week|string|length == 0 or now().weekday() == day_of_week }}'
+  value_template: '{{ trigger_type == "day_of_month_type" or now().weekday() == day_of_week }}'
 action:
   repeat:
     for_each: '{{ itemsList.split("\n") }}'
