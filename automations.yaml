@@ -50,6 +50,7 @@
         Pay Bills'
       list: todo.home_tasks
       trigger_type: day_of_month_type
+      notification_title: Monthly house tasks
 - id: '1690595804593'
   alias: Garbage day
   description: ''
@@ -61,6 +62,7 @@
       items: Take out trash
       list: todo.home_tasks
       trigger_type: day_of_week_type
+      notification_title: Garbage day
 - id: '1709602687054'
   alias: Frigate Notification Porch Person
   description: ''
