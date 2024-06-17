@@ -76,11 +76,17 @@
       update_thumbnail: true
       zone_filter: true
       zones:
-      - porch
-      labels: []
+      - on_porch
+      labels:
+      - person
+      - package
       cooldown: 160
       debug: true
       state_filter: false
+      update_sub_label: false
+      tap_action: /lovelace
+      url_1: /lovelace
+      button_1: Open app
 - id: '1709647869626'
   alias: Frigate Notifications Person in Yard
   description: ''
@@ -94,6 +100,7 @@
       - person
       zone_multi: false
       zone_filter: true
+      presence_filter: person.jen
 - id: '1710947464947'
   alias: Clear todo items automatically
   description: ''
@@ -114,3 +121,24 @@
     target:
       entity_id: todo.home_tasks
   mode: single
+- id: '1718654431767'
+  alias: Frigate notifications Driveway people or cars
+  description: ''
+  use_blueprint:
+    path: SgtBatten/Stable.yaml
+    input:
+      camera: camera.driveway
+      notify_device: c912a4836ddece53925333ce20def0b8
+      critical: 'true'
+      alert_once: false
+      tap_action: /lovelace
+      button_1: View Stream
+      url_1: /lovelace
+      url_2: /ccab4aaf_frigate-fa/dashboard
+      button_2: Open Frigate
+      zone_filter: true
+      zones:
+      - entire_driveway
+      labels:
+      - person
+      - car
