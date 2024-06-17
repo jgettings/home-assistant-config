@@ -1,0 +1,73 @@
+title: Home
+views:
+  - path: default_view
+    title: Home
+    icon: mdi:home-heart
+    type: sidebar
+    badges: []
+    cards:
+      - type: custom:frigate-card
+        cameras:
+          - camera_entity: camera.porch
+        view:
+          default: live
+        menu:
+          style: overlay
+          buttons:
+            cameras:
+              enabled: false
+            frigate:
+              enabled: false
+        dimensions:
+          aspect_ratio_mode: static
+      - type: custom:frigate-card
+        cameras:
+          - camera_entity: camera.driveway
+        view:
+          default: live
+          scan:
+            enabled: false
+        menu:
+          style: overlay
+          buttons:
+            cameras:
+              enabled: false
+            frigate:
+              enabled: false
+        live:
+          controls:
+            builtin: false
+      - type: custom:frigate-card
+        cameras:
+          - camera_entity: camera.yard
+        view:
+          default: live
+        menu:
+          style: overlay
+          buttons:
+            cameras:
+              enabled: false
+            frigate:
+              enabled: false
+      - type: thermostat
+        entity: climate.thermostat_75_ed_31
+        view_layout:
+          position: sidebar
+      - type: weather-forecast
+        entity: weather.forecast_home
+        view_layout:
+          position: sidebar
+      - type: entities
+        entities:
+          - entity: switch.kitchen
+          - entity: switch.living_room_lamp
+        title: Lights
+        show_header_toggle: false
+        state_color: false
+        view_layout:
+          position: sidebar
+      - type: todo-list
+        entity: todo.home_tasks
+        title: To Do
+        view_layout:
+          position: sidebar
