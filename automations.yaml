@@ -68,6 +68,13 @@
       zone_multi: false
       zone_filter: true
       presence_filter: person.jen
+      critical: 'true'
+      update_sub_label: false
+      zones:
+      - entire_yard
+      tap_action: /lovelace
+      url_1: /lovelace
+      button_1: Open app
 - id: '1710947464947'
   alias: Clear todo items automatically
   description: ''
