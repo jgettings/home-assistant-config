@@ -177,3 +177,31 @@
     target:
       device_id: e77ba93b23b9ba7f691f934d80d1df77
   mode: single
+- id: '1718738284559'
+  alias: Jen goes to bed
+  description: Turn off lights, notify if anything is left open/unlocked
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.sm_g986u1_battery_state
+    to: charging
+  condition:
+  - condition: state
+    entity_id: person.jen
+    state: home
+  - condition: time
+    after: '21:00:00'
+  action:
+  - service: notify.mobile_app_sm_g986u1
+    metadata: {}
+    data:
+      message: Goodnight!
+  - type: turn_off
+    device_id: 405d0e9a4a8f359f1386cca76dba82ac
+    entity_id: 6156c3435ab014f367e9b277bd830a8a
+    domain: switch
+  - type: turn_off
+    device_id: 0d78a45614f73f40073b9b5656761f1a
+    entity_id: 8be8dd889bfbad65cd24be899fb43553
+    domain: switch
+  mode: single
