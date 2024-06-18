@@ -1,36 +1,3 @@
-- id: '1688949281746'
-  alias: Notify on driveway motion
-  description: ''
-  use_blueprint:
-    path: vorion/send-camera-snapshot-notification-on-motion.yaml
-    input:
-      motion_sensor: binary_sensor.driveway_cam_motion_detected
-      camera: camera.driveway_cam
-      notify_device: c912a4836ddece53925333ce20def0b8
-      notification_title: Motion detected in driveway
-      notification_message: Motion detected in driveway
-- id: '1688950165670'
-  alias: Notify on front porch motion
-  description: ''
-  use_blueprint:
-    path: vorion/send-camera-snapshot-notification-on-motion.yaml
-    input:
-      motion_sensor: binary_sensor.front_porch_cam_motion_detected
-      camera: camera.front_porch_cam
-      notify_device: c912a4836ddece53925333ce20def0b8
-      notification_title: Motion detected on front porch
-      notification_message: Front porch camera detected movement!
-- id: '1688950197059'
-  alias: Notify on back yard camera motion
-  description: ''
-  use_blueprint:
-    path: vorion/send-camera-snapshot-notification-on-motion.yaml
-    input:
-      motion_sensor: binary_sensor.back_yard_cam_motion_detected
-      camera: camera.back_yard_cam
-      notify_device: c912a4836ddece53925333ce20def0b8
-      notification_title: Motion detected in yard
-      notification_message: Back yard camera detected movement!
 - id: '1690595752570'
   alias: Monthly house tasks
   description: ''
@@ -142,3 +109,71 @@
       labels:
       - person
       - car
+- id: '1718737007570'
+  alias: Jen leaves home
+  description: 'Notify if anything is left open/unlocked
+
+    Set thermostat to away
+
+    Set moen flo to away
+
+    Turn off kitchen light'
+  trigger:
+  - platform: state
+    entity_id:
+    - person.jen
+    attribute: device_trackers
+    from: home
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+  condition: []
+  action:
+  - service: notify.mobile_app_sm_g986u1
+    metadata: {}
+    data:
+      message: You left!
+  - type: turn_off
+    device_id: 405d0e9a4a8f359f1386cca76dba82ac
+    entity_id: 6156c3435ab014f367e9b277bd830a8a
+    domain: switch
+  - service: flo.set_away_mode
+    metadata: {}
+    data: {}
+    target:
+      device_id: e77ba93b23b9ba7f691f934d80d1df77
+  mode: single
+- id: '1718737136374'
+  alias: Jen arrives home
+  description: 'Set thermostat & moen flo to home
+
+    Turn on kitchen light
+
+    Offer to unlock door or open garage'
+  trigger:
+  - platform: state
+    entity_id:
+    - person.jen
+    attribute: device_trackers
+    to: home
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  condition: []
+  action:
+  - service: notify.mobile_app_sm_g986u1
+    metadata: {}
+    data:
+      message: Welcome home!
+  - type: turn_on
+    device_id: 405d0e9a4a8f359f1386cca76dba82ac
+    entity_id: 6156c3435ab014f367e9b277bd830a8a
+    domain: switch
+  - service: flo.set_home_mode
+    metadata: {}
+    data: {}
+    target:
+      device_id: e77ba93b23b9ba7f691f934d80d1df77
+  mode: single
