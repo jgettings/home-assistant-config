@@ -57,6 +57,28 @@ views:
         entity: weather.forecast_home
         view_layout:
           position: sidebar
+      - type: custom:mailandpackages-card
+        name: Mail and Packages
+        entity_packages_delivered: false
+        entity_packages_in_transit: false
+        entity_usps_mail: false
+        entity_USPS_packages: true
+        show_usps_camera: true
+        entity_USPS_exception: false
+        entity_UPS_packages: true
+        entity_UPS_exception: false
+        entity_fedex_packages: true
+        entity_DHL_packages: false
+        entity_canada_post_packages: false
+        entity_amazon_packages: true
+        entity_amazon_packages_delivered: false
+        entity_amazon_exception: false
+        entity_amazon_hub_packages: false
+        show_amazon_camera: false
+        show_warning: false
+        show_error: true
+        view_layout:
+          position: sidebar
       - type: entities
         entities:
           - entity: switch.kitchen
@@ -69,5 +91,13 @@ views:
       - type: todo-list
         entity: todo.home_tasks
         title: To Do
+        view_layout:
+          position: sidebar
+      - type: custom:xiaomi-vacuum-map-card
+        entity: vacuum.downstairs
+        vacuum_platform: DeebotUniverse/Deebot-4-Home-Assistant
+        map_source:
+          image: >-
+            /api/image_proxy/image.downstairs_map?token=d7d7dcac965b73c1d9d5cc80555bbee2d9f4ba5131037662b7741aef782cb5e3
         view_layout:
           position: sidebar

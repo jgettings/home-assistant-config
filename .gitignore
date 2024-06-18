@@ -44,6 +44,7 @@ www/floorplans
 www/community
 custom_components/hacs
 custom_components/frigate
+custom_components/mail_and_packages
 downloads
 icloud
 dlib_faces
@@ -60,3 +61,4 @@ home-assistant_v2.db*
 wyze_config.ini
 www/tmp
 backups
+
