@@ -212,3 +212,17 @@
     entity_id: 8be8dd889bfbad65cd24be899fb43553
     domain: switch
   mode: single
+- id: '1718910142593'
+  alias: Set allow automation execution on startup
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: start
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.allow_automation_execution
+  mode: single

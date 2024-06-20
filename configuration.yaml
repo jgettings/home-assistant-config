@@ -5,6 +5,7 @@ default_config:
 homeassistant:
   external_url: !secret external_url
   internal_url: !secret internal_url
+  packages: !include_dir_named packages
 
 # Load frontend themes from the themes folder
 frontend:
