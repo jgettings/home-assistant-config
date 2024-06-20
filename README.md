@@ -13,6 +13,7 @@ https://community.home-assistant.io/t/sharing-your-configuration-on-github/19514
 - Wemo switches and sockets
 - Radio Thermostat
 - Aladdin Genie garage door opener
+- Zwave (https://zwave-js.github.io/zwave-js-ui//#/getting-started/quick-start)
 
 ### To be added
 
