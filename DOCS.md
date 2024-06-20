@@ -44,3 +44,10 @@ https://mqttx.app/downloads
 #### Resetting the stick
 
 I had to reset the stick when I redid everything because I didn't know the old security codes. This software let me reset easily and could be good for future debugging of the zwave network but it was difficult to find the right downloads, I'm not sure which link actually worked. Need an account and then something here https://www.silabs.com/wireless/z-wave?tab=software#software you eventually get a PC Controller inside the Simplicity Studio which recognized the stick and the attached device(s). 
+
+
+## Devices
+
+### Radio Thermostat
+
+https://github.com/brannondorsey/radio-thermostat/blob/master/RTCOAWiFIAPIV1_3.pdf
