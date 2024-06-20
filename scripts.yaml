@@ -1,0 +1,50 @@
+notify_if_anything_unlocked_or_open:
+  alias: Notify if anything unlocked or open
+  sequence:
+  - if:
+    - condition: device
+      device_id: 0e5587c11080efee251f5c8a1fb1bea2
+      domain: lock
+      entity_id: 0a4102f70006900529fd4a53b1081414
+      type: is_unlocked
+    then:
+    - service: notify.mobile_app_sm_g986u1
+      metadata: {}
+      data:
+        message: Side door is unlocked!
+        title: Security Warning
+        data:
+          channel: security-warning
+    alias: Notify if side door unlocked
+  - if:
+    - condition: device
+      device_id: e56e787c8defd1d4bd3ff8e7e2d230ef
+      domain: cover
+      entity_id: 2e8d739da890942b8e7b59f2cefdb769
+      type: is_open
+    then:
+    - service: notify.mobile_app_sm_g986u1
+      metadata: {}
+      data:
+        message: Big Garage Door is open!!!
+        title: Security Warning
+        data:
+          channel: security-warning
+    alias: Notify if big garage door open
+  - if:
+    - condition: device
+      device_id: 6d804902bda3cd48ca8bbcf662152d5a
+      domain: cover
+      entity_id: de092b96792585d0b05312debb4518e2
+      type: is_open
+    then:
+    - service: notify.mobile_app_sm_g986u1
+      metadata: {}
+      data:
+        message: Side garage door is open!!
+        title: Security Warning
+        data:
+          channel: security-warning
+    alias: Notify if side garage bay door open
+  description: ''
+  icon: mdi:police-badge

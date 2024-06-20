@@ -150,6 +150,9 @@
     data: {}
     target:
       device_id: e77ba93b23b9ba7f691f934d80d1df77
+  - service: script.notify_if_anything_unlocked_or_open
+    metadata: {}
+    data: {}
   mode: single
 - id: '1718737136374'
   alias: Jen arrives home
@@ -211,20 +214,9 @@
     device_id: 0d78a45614f73f40073b9b5656761f1a
     entity_id: 8be8dd889bfbad65cd24be899fb43553
     domain: switch
-  - if:
-    - condition: device
-      device_id: 0e5587c11080efee251f5c8a1fb1bea2
-      domain: lock
-      entity_id: 0a4102f70006900529fd4a53b1081414
-      type: is_unlocked
-    then:
-    - service: notify.mobile_app_sm_g986u1
-      metadata: {}
-      data:
-        message: Side door is unlocked!
-        title: Security Warning
-        data:
-          channel: security-warning
+  - service: script.notify_if_anything_unlocked_or_open
+    metadata: {}
+    data: {}
   mode: single
 - id: '1718910142593'
   alias: Set allow automation execution on startup
