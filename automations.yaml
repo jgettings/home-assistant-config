@@ -211,6 +211,20 @@
     device_id: 0d78a45614f73f40073b9b5656761f1a
     entity_id: 8be8dd889bfbad65cd24be899fb43553
     domain: switch
+  - if:
+    - condition: device
+      device_id: 0e5587c11080efee251f5c8a1fb1bea2
+      domain: lock
+      entity_id: 0a4102f70006900529fd4a53b1081414
+      type: is_unlocked
+    then:
+    - service: notify.mobile_app_sm_g986u1
+      metadata: {}
+      data:
+        message: Side door is unlocked!
+        title: Security Warning
+        data:
+          channel: security-warning
   mode: single
 - id: '1718910142593'
   alias: Set allow automation execution on startup
@@ -225,4 +239,78 @@
     data: {}
     target:
       entity_id: input_boolean.allow_automation_execution
+  mode: single
+- id: '1718915176839'
+  alias: Side door lock jammed notification
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 0e5587c11080efee251f5c8a1fb1bea2
+    domain: lock
+    entity_id: 0a4102f70006900529fd4a53b1081414
+    type: jammed
+  condition: []
+  action:
+  - service: notify.mobile_app_sm_g986u1
+    metadata: {}
+    data:
+      message: Side door lock jammed
+  mode: single
+- id: '1718915278663'
+  alias: Side door intrusion became unsafe
+  description: ''
+  trigger:
+  - type: unsafe
+    platform: device
+    device_id: 0e5587c11080efee251f5c8a1fb1bea2
+    entity_id: 3f11db3db94ffa2392be6660b4b9e152
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: notify.mobile_app_sm_g986u1
+    metadata: {}
+    data:
+      message: Side door intrusion became unsafe
+  mode: single
+- id: '1718915397253'
+  alias: Side door lock battery low
+  description: ''
+  trigger:
+  - type: bat_low
+    platform: device
+    device_id: 0e5587c11080efee251f5c8a1fb1bea2
+    entity_id: 96c008d3ae976aec3bc7524c8b876641
+    domain: binary_sensor
+  - type: bat_low
+    platform: device
+    device_id: 0e5587c11080efee251f5c8a1fb1bea2
+    entity_id: 38e435d4566059402b97766970d0866e
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: notify.mobile_app_sm_g986u1
+    metadata: {}
+    data:
+      message: Replace battery soon on side door lock - battery low!
+      title: Side door lock
+  - service: notify.persistent_notification
+    metadata: {}
+    data:
+      message: Replace side door lock battery!
+  mode: single
+- id: '1718915486716'
+  alias: Side door lock firmware update available
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_on
+    device_id: 0e5587c11080efee251f5c8a1fb1bea2
+    entity_id: 926641b2e8642b77199f5729cc56fc9b
+    domain: update
+  condition: []
+  action:
+  - service: notify.persistent_notification
+    metadata: {}
+    data:
+      message: Side door lock firmware update available
   mode: single
