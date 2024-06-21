@@ -46,6 +46,7 @@ custom_components/hacs
 custom_components/frigate
 custom_components/mail_and_packages
 custom_components/keymaster
+custom_components/scheduler
 downloads
 icloud
 dlib_faces
@@ -62,3 +63,4 @@ home-assistant_v2.db*
 wyze_config.ini
 www/tmp
 backups
+

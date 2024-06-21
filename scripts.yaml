@@ -48,3 +48,21 @@ notify_if_anything_unlocked_or_open:
     alias: Notify if side garage bay door open
   description: ''
   icon: mdi:police-badge
+keymaster_side_door_manual_notify:
+  alias: keymaster_side_door_manual_notify
+  mode: parallel
+  sequence:
+  - service: notify.mobile_app_sm_g986u1
+    metadata: {}
+    data:
+      message: '{{message}}'
+      title: '{{title}}'
+      data:
+        channel: security-warning
+  - service: notify.persistent_notification
+    metadata: {}
+    data:
+      title: '{{ title }}'
+      message: '{{ message }}'
+  description: ''
+  icon: mdi:message
