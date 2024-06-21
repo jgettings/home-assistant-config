@@ -60,7 +60,7 @@ views:
       - type: custom:mailandpackages-card
         name: Mail and Packages
         entity_packages_delivered: false
-        entity_packages_in_transit: false
+        entity_packages_in_transit: true
         entity_usps_mail: false
         entity_USPS_packages: true
         show_usps_camera: true
@@ -88,16 +88,19 @@ views:
         state_color: false
         view_layout:
           position: sidebar
+      - show_name: true
+        show_icon: true
+        show_state: true
+        type: glance
+        entities:
+          - entity: lock.touchscreen_deadbolt
+          - entity: cover.side_garage_door
+          - entity: cover.big_door
+        state_color: false
+        view_layout:
+          position: sidebar
       - type: todo-list
         entity: todo.home_tasks
         title: To Do
-        view_layout:
-          position: sidebar
-      - type: custom:xiaomi-vacuum-map-card
-        entity: vacuum.downstairs
-        vacuum_platform: DeebotUniverse/Deebot-4-Home-Assistant
-        map_source:
-          image: >-
-            /api/image_proxy/image.downstairs_map?token=d7d7dcac965b73c1d9d5cc80555bbee2d9f4ba5131037662b7741aef782cb5e3
         view_layout:
           position: sidebar
