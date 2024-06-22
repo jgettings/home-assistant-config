@@ -52,17 +52,22 @@ keymaster_side_door_manual_notify:
   alias: keymaster_side_door_manual_notify
   mode: parallel
   sequence:
-  - service: notify.mobile_app_sm_g986u1
-    metadata: {}
-    data:
-      message: '{{message}}'
-      title: '{{title}}'
+  - if:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: person.jen
+        state: not_home
+      - condition: time
+        after: '21:00:00'
+        before: 08:00:00
+    then:
+    - service: notify.mobile_app_sm_g986u1
+      metadata: {}
       data:
-        channel: security-warning
-  - service: notify.persistent_notification
-    metadata: {}
-    data:
-      title: '{{ title }}'
-      message: '{{ message }}'
+        message: '{{message}}'
+        title: '{{title}}'
+        data:
+          channel: security-warning
   description: ''
   icon: mdi:message
