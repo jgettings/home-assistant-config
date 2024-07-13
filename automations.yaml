@@ -115,7 +115,6 @@
       - entire_driveway
       labels:
       - person
-      - car
 - id: '1718737007570'
   alias: Jen leaves home
   description: 'Notify if anything is left open/unlocked
@@ -307,3 +306,40 @@
     data:
       message: Side door lock firmware update available
   mode: single
+- id: '1719087732738'
+  alias: Evening - turn on living room lamp
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id:
+    - sun.sun
+    attribute: elevation
+    below: 15
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 0d78a45614f73f40073b9b5656761f1a
+    entity_id: 8be8dd889bfbad65cd24be899fb43553
+    domain: switch
+  mode: single
+- id: '1719693982129'
+  alias: Add more jobs to todo list
+  description: ''
+  use_blueprint:
+    path: mine/add_to_todo_list.yaml
+    input:
+      trigger_type: day_of_week_type
+      day_of_week: 0
+      items: 'Apply to Job 1
+
+        Apply to Job 2
+
+        Apply to Job 3
+
+        Leetcode 1
+
+        Leetcode 2
+
+        Leetcode 3'
+      list: todo.find_a_job
+      notification_title: Apply to some jobs this week!
