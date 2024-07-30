@@ -1,4 +1,14 @@
 views:
+  - title: General
+    path: general
+    icon: mdi:cog
+    cards:
+      - type: entities
+        entities:
+          - input_boolean.currently_fostering
+        title: Foster Dog
+        show_header_toggle: false
+        state_color: true
   - title: Locks
     path: keypad-side_door
     icon: mdi:lock-smart
@@ -158,6 +168,12 @@ views:
                       - input_boolean.sat_inc_side_door_2
                       - input_datetime.sat_start_date_side_door_2
                       - input_datetime.sat_end_date_side_door_2
+      - type: history-graph
+        entities:
+          - entity: lock.touchscreen_deadbolt
+      - type: logbook
+        entities:
+          - lock.touchscreen_deadbolt
   - title: Thermostat
     path: thermostat
     icon: mdi:thermometer
@@ -175,6 +191,67 @@ views:
       - type: history-graph
         entities:
           - entity: climate.thermostat_75_ed_31
+  - icon: mdi:video
+    title: Cameras
+    path: cameras
+    badges:
+      - binary_sensor.porch_motion
+      - binary_sensor.driveway_motion
+      - binary_sensor.yard_motion
+    cards:
+      - type: custom:frigate-card
+        cameras:
+          - camera_entity: camera.porch
+          - camera_entity: camera.driveway
+          - camera_entity: camera.yard
+        menu:
+          style: overlay
+          buttons:
+            frigate:
+              enabled: false
+            substreams:
+              enabled: false
+        live:
+          draggable: false
+      - type: custom:swipe-card
+        parameters:
+          pagination:
+            type: bullets
+          navigation: null
+          keyboard:
+            enabled: true
+            onlyInViewport: true
+        cards:
+          - type: picture
+            image_entity: image.porch_cat
+          - type: picture
+            image_entity: image.porch_dog
+          - type: picture
+            image_entity: image.porch_person
+          - type: picture
+            image_entity: image.driveway_car
+          - type: picture
+            image_entity: image.driveway_bicycle
+          - type: picture
+            image_entity: image.driveway_cat
+          - type: picture
+            image_entity: image.driveway_dog
+          - type: picture
+            image_entity: image.driveway_person
+          - type: picture
+            image_entity: image.yard_person
+          - type: picture
+            image_entity: image.yard_dog
+          - type: picture
+            image_entity: image.yard_cat
+      - type: entities
+        entities:
+          - entity: automation.frigate_notification_porch_person
+          - entity: automation.driveway_frigate_notification
+          - entity: automation.frigate_notifications_person_in_yard
+        title: Notifications
+        show_header_toggle: false
+        state_color: true
   - title: Schedule
     path: schedule
     icon: mdi:calendar-clock
@@ -184,3 +261,14 @@ views:
           - climate
           - switch
         exclude: []
+        sort_by:
+          - state
+          - relative-time
+        display_options:
+          primary_info: default
+          secondary_info:
+            - relative-time
+            - days
+            - time
+            - additional-tasks
+          icon: action

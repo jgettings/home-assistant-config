@@ -53,10 +53,13 @@ views:
         entity: climate.thermostat_75_ed_31
         view_layout:
           position: sidebar
-      - type: weather-forecast
+      - show_current: true
+        show_forecast: true
+        type: weather-forecast
         entity: weather.forecast_home
         view_layout:
           position: sidebar
+        forecast_type: daily
       - type: custom:mailandpackages-card
         name: Mail and Packages
         entity_packages_delivered: false
