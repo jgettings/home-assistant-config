@@ -1,0 +1,79 @@
+- id: '1737319265419'
+  alias: Pre-wake-up
+  description: ''
+  triggers:
+  - trigger: time
+    at: 06:45:00
+  conditions: []
+  actions:
+  - action: scene.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - scene.bedroom_blinds_sunrise_open
+      device_id:
+      - 23d224b52db39d3865e45391653e9dcf
+  mode: single
+- id: '1737319582212'
+  alias: Sunset
+  description: ''
+  triggers:
+  - trigger: sun
+    event: sunset
+    offset: '0'
+  conditions: []
+  actions:
+  - action: scene.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - scene.bedroom_blinds_closed
+      device_id:
+      - 23d224b52db39d3865e45391653e9dcf
+  - action: scene.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - scene.living_room_blinds_closed
+      device_id:
+      - f63bbaeafe68c79772e8fce7d3c2c58f
+  mode: single
+- id: '1737341124915'
+  alias: Laptop unplugged notification
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - sensor.jenslaptop_battery_powerline_status
+    from: Online
+    to: Offline
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  conditions: []
+  actions:
+  - action: notify.mobile_app_jen_s_phone
+    metadata: {}
+    data:
+      message: Laptop Unplugged for 5 minutes
+  mode: single
+- id: '1737341248636'
+  alias: Laptop battery below 50%
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.jenslaptop_battery_charge_remaining_percentage
+    above: 0
+    below: 49.9
+  conditions: []
+  actions:
+  - action: notify.mobile_app_jen_s_phone
+    metadata: {}
+    data:
+      message: Laptop battery below 50%! Plug it in!!!
+  mode: single

@@ -5,7 +5,6 @@ Hopefully the backup of docker-compose is enough to restore everything if my ser
 ## Services
 
 - [homeassistant](https://www.home-assistant.io/) - the main thing that is in charge of everything
-- [frigate](https://docs.frigate.video/) - adds some object detection and other nice functions around the cameras
 - [cloudflared-tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/get-started/) - uses a cloudflare tunnel to let me access home assistant outside of the local network
 - [mosquitto](https://mosquitto.org/) - MQTT server to let home assistant talk to frigate and zwave js
 - [zwave js](https://github.com/zwave-js/zwave-js-ui) - adds some management to the zwave network so that home assistant can access the devices
@@ -43,11 +42,4 @@ https://mqttx.app/downloads
 
 #### Resetting the stick
 
-I had to reset the stick when I redid everything because I didn't know the old security codes. This software let me reset easily and could be good for future debugging of the zwave network but it was difficult to find the right downloads, I'm not sure which link actually worked. Need an account and then something here https://www.silabs.com/wireless/z-wave?tab=software#software you eventually get a PC Controller inside the Simplicity Studio which recognized the stick and the attached device(s). 
-
-
-## Devices
-
-### Radio Thermostat
-
-https://github.com/brannondorsey/radio-thermostat/blob/master/RTCOAWiFIAPIV1_3.pdf
+I had to reset the stick when I redid everything because I didn't know the old security codes. This software let me reset easily and could be good for future debugging of the zwave network but it was difficult to find the right downloads, I'm not sure which link actually worked. Need an account and then something here https://www.silabs.com/wireless/z-wave?tab=software#software you eventually get a PC Controller inside the Simplicity Studio which recognized the stick and the attached device(s).

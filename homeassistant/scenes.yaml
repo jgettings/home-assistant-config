@@ -1,0 +1,151 @@
+- id: '1737317864051'
+  name: Bedroom blinds top half open
+  entities:
+    cover.smartwings_day_night_shades_outbound_bottom:
+      current_position: 1
+      device_class: window
+      friendly_name: Bedroom Blinds Outbound Bottom
+      supported_features: 15
+      state: open
+    cover.smartwings_day_night_shades_outbound_bottom_2:
+      current_position: 51
+      device_class: window
+      friendly_name: Bedroom Blinds Outbound Bottom (2)
+      supported_features: 15
+      state: open
+  metadata: {}
+- id: '1737318045566'
+  name: Bedroom blinds sunrise open
+  entities:
+    cover.smartwings_day_night_shades_outbound_bottom:
+      current_position: 1
+      device_class: window
+      friendly_name: Bedroom Blinds Outbound Bottom
+      supported_features: 15
+      state: open
+    cover.smartwings_day_night_shades_outbound_bottom_2:
+      current_position: 80
+      device_class: window
+      friendly_name: Bedroom Blinds Outbound Bottom (2)
+      supported_features: 15
+      state: open
+  icon: mdi:weather-sunset-up
+  metadata: {}
+- id: '1737318107604'
+  name: Bedroom blinds closed
+  entities:
+    cover.smartwings_day_night_shades_outbound_bottom:
+      current_position: 1
+      device_class: window
+      friendly_name: Bedroom Blinds Outbound Bottom
+      supported_features: 15
+      state: open
+    cover.smartwings_day_night_shades_outbound_bottom_2:
+      current_position: 100
+      device_class: window
+      friendly_name: Bedroom Blinds Outbound Bottom (2)
+      supported_features: 15
+      state: open
+  icon: mdi:eye-off
+  metadata: {}
+- id: '1737318192231'
+  name: Bedroom blinds open
+  entities:
+    cover.smartwings_day_night_shades_outbound_bottom:
+      current_position: 100
+      device_class: window
+      friendly_name: Bedroom Blinds Outbound Bottom
+      supported_features: 15
+      state: open
+    cover.smartwings_day_night_shades_outbound_bottom_2:
+      current_position: 100
+      device_class: window
+      friendly_name: Bedroom Blinds Outbound Bottom (2)
+      supported_features: 15
+      state: open
+  icon: mdi:weather-sunny
+  metadata: {}
+- id: '1737319720212'
+  name: Living room blinds top half open
+  entities:
+    cover.living_room_blinds_outbound_bottom:
+      current_position: 1
+      device_class: window
+      friendly_name: Living Room Blinds Outbound Bottom
+      supported_features: 15
+      state: open
+    cover.living_room_blinds_outbound_bottom_2:
+      current_position: 51
+      device_class: window
+      friendly_name: Living Room Blinds Outbound Bottom (2)
+      supported_features: 15
+      state: open
+  metadata: {}
+- id: '1737319788287'
+  name: Living room blinds sunrise open
+  entities:
+    cover.living_room_blinds_outbound_bottom:
+      current_position: 1
+      device_class: window
+      friendly_name: Living Room Blinds Outbound Bottom
+      supported_features: 15
+      state: open
+    cover.living_room_blinds_outbound_bottom_2:
+      current_position: 80
+      device_class: window
+      friendly_name: Living Room Blinds Outbound Bottom (2)
+      supported_features: 15
+      state: open
+  icon: mdi:weather-sunset-up
+  metadata: {}
+- id: '1737319859546'
+  name: Living room blinds open
+  entities:
+    cover.living_room_blinds_outbound_bottom:
+      current_position: 99
+      device_class: window
+      friendly_name: Living Room Blinds Outbound Bottom
+      supported_features: 15
+      state: open
+    cover.living_room_blinds_outbound_bottom_2:
+      current_position: 100
+      device_class: window
+      friendly_name: Living Room Blinds Outbound Bottom (2)
+      supported_features: 15
+      state: open
+  icon: mdi:weather-sunny
+  metadata: {}
+- id: '1737319939796'
+  name: Living room blinds closed
+  entities:
+    cover.living_room_blinds_outbound_bottom:
+      current_position: 1
+      device_class: window
+      friendly_name: Living Room Blinds Outbound Bottom
+      supported_features: 15
+      state: open
+    cover.living_room_blinds_outbound_bottom_2:
+      current_position: 100
+      device_class: window
+      friendly_name: Living Room Blinds Outbound Bottom (2)
+      supported_features: 15
+      state: open
+  icon: mdi:eye-off-outline
+  metadata: {}
+- id: '1737320042775'
+  name: Living room office
+  entities:
+    cover.living_room_blinds_outbound_bottom:
+      current_position: 15
+      device_class: window
+      friendly_name: Living Room Blinds Outbound Bottom
+      supported_features: 15
+      state: open
+    cover.living_room_blinds_outbound_bottom_2:
+      current_position: 40
+      device_class: window
+      friendly_name: Living Room Blinds Outbound Bottom (2)
+      supported_features: 15
+      state: open
+  icon: mdi:desk
+  metadata: {}

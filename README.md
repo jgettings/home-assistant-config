@@ -7,17 +7,14 @@ https://www.home-assistant.io/
 
 https://community.home-assistant.io/t/sharing-your-configuration-on-github/195144
 
-## My Integrations
+## Integrations
 
-- Amcrest Cameras (to be added: frigate)
-- Wemo switches and sockets
-- Radio Thermostat
-- Aladdin Genie garage door opener
 - Zwave (https://zwave-js.github.io/zwave-js-ui//#/getting-started/quick-start)
+  - Currently using https://github.com/zwave-js/zwave-js-ui/releases/tag/v9.29.1 for windows directly running on laptop
+- Philips Hue
 
 ### To be added
 
-- Moen Flo
 - Ecovacs
 - More door/motion sensors for security
 - Presence detection
