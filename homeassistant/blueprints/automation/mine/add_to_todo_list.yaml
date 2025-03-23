@@ -1,0 +1,91 @@
+blueprint:
+  name: Add to To-do List
+  description: Add items to the to-do list integration on a schedule
+  domain: automation
+  author: Jen Gettings
+  input:
+    time_of_day:
+      name: Time of day
+      description: When to run the automation
+      selector:
+        time:
+      default: 07:00:00
+    trigger_type:
+      name: Trigger type
+      description: Choose between day of week or day of Month
+      selector:
+        select:
+          options:
+            - label: Day of Month
+              value: day_of_month_type
+            - label: Day of Week
+              value: day_of_week_type
+    day_of_month:
+      name: Day of Month
+      description: Which day the item should be added to the List. Not used when trigger type is "Day of Week".
+      selector:
+        number:
+          min: 1
+          max: 31
+      default: {}
+    day_of_week:
+      name: Day of Week
+      description: Which day the item should be added to the list. 0 is Monday and 6 is Sunday. Not used when trigger type is "Day of Month".
+      selector:
+        number:
+          min: 0
+          max: 6
+      default: {}
+    items:
+      name: Items to add, use a new line for each
+      selector:
+        text:
+          multiline: true
+      default: Enter text to add to the list
+    list:
+      name: List to add items to
+      selector:
+        entity:
+          multiple: false
+          filter:
+            - domain: todo
+      default: todo.shopping_list
+    notification_title:
+      name: Notification title
+      selector:
+        text:
+          multiline: false
+      default: New todo items
+trigger:
+- platform: time
+  at: !input time_of_day
+variables:
+  trigger_type: !input trigger_type
+  day_of_month: !input day_of_month
+  day_of_week: !input day_of_week
+  itemsList: !input items
+  listEntityId: !input list
+condition:
+- condition: template
+  value_template: '{{ trigger_type == "day_of_week_type" or now().day == day_of_month }}'
+- condition: template
+  value_template: '{{ trigger_type == "day_of_month_type" or now().weekday() == day_of_week }}'
+action:
+  - repeat:
+      for_each: '{{ itemsList.split("\n") }}'
+      sequence:
+        - service: todo.add_item
+          data:
+            item: '{{ repeat.item }}'
+          target:
+            entity_id: !input list
+  - service: notify.mobile_app_jen_s_phone
+    metadata: {}
+    data:
+      message: 'New item(s) on {{ state_attr(listEntityId, "friendly_name") }} list'
+      title: !input notification_title
+      data:
+        clickAction: /todo?entity_id={{listEntityId}}
+mode: single
+
+# TODO monthly/other schedules?

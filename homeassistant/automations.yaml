@@ -392,3 +392,47 @@
       - scene.living_room_blinds_open
       - scene.bedroom_blinds_top_half_open
   mode: single
+- id: '1742762227573'
+  alias: Add monthly tasks to todo list
+  description: ''
+  use_blueprint:
+    path: mine/add_to_todo_list.yaml
+    input:
+      time_of_day: 08:00:00
+      trigger_type: day_of_month_type
+      day_of_month: 1
+      items: 'Pay Bills
+
+        Empty robot vacuum
+
+        Clean air filter
+
+        Clean humidifier
+
+        Clean washing machine filter
+
+        Check blinds charge
+
+        Clean heater filters'
+      list: todo.todo_list
+- id: '1710947464947'
+  alias: Clear todo items automatically
+  description: ''
+  triggers:
+  - entity_id:
+    - todo.todo_list
+    trigger: state
+  conditions: []
+  actions:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - todo.todo_list
+    action: todo.remove_completed_items
+  mode: single
