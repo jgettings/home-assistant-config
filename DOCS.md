@@ -8,6 +8,7 @@ Hopefully the backup of docker-compose is enough to restore everything if my ser
 - [cloudflared-tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/get-started/) - uses a cloudflare tunnel to let me access home assistant outside of the local network
 - [mosquitto](https://mosquitto.org/) - MQTT server to let home assistant talk to frigate and zwave js
 - [zwave js](https://github.com/zwave-js/zwave-js-ui) - adds some management to the zwave network so that home assistant can access the devices
+  - Currently using this running on windows directly instead of in docker because docker on windows apparently can't access the usb stick
 
 
 ### Mosquitto

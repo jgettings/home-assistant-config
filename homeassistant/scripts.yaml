@@ -1,0 +1,29 @@
+dim_bright_all_lights:
+  sequence:
+  - variables:
+      entities:
+      - light.kitchen_overhead_light
+      - light.nightstand_lamp_1
+      - light.entry_overhead
+      - light.living_room_lamp
+  - action: light.turn_on
+    metadata: {}
+    data_template:
+      brightness_step_pct: '{{ brightness_adjustment }}'
+    target:
+      entity_id: '{{ entities }}'
+    enabled: true
+  fields:
+    brightness_adjustment:
+      selector:
+        number:
+          min: -100
+          max: 100
+      name: Brightness Adjustment
+      description: As percentage
+      required: true
+      default: 10
+  alias: Dim/Bright all lights
+  description: ''
+  mode: queued
+  max: 10
