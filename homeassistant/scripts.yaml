@@ -27,3 +27,16 @@ dim_bright_all_lights:
   description: ''
   mode: queued
   max: 10
+turn_off_all_lights:
+  sequence:
+  - action: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - light.entry_overhead
+      - light.kitchen_overhead_light
+      - light.living_room_lamp
+      - light.nightstand_lamp_1
+  alias: Turn off all lights
+  description: ''

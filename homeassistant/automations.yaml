@@ -106,15 +106,11 @@
     - condition: time
       before: 04:00:00
   actions:
-  - action: light.turn_off
+  - action: script.turn_on
     metadata: {}
     data: {}
     target:
-      entity_id:
-      - light.entry_overhead
-      - light.kitchen_overhead_light
-      - light.living_room_lamp
-      - light.nightstand_lamp_1
+      entity_id: script.turn_off_all_lights
   mode: single
 - id: '1737775732350'
   alias: Tap Dial 2 - Toggle entry light
@@ -435,4 +431,21 @@
       entity_id:
       - todo.todo_list
     action: todo.remove_completed_items
+  mode: single
+- id: '1743278154096'
+  alias: Bedtime - away
+  description: ''
+  triggers:
+  - trigger: time
+    at: '23:00:00'
+  conditions:
+  - condition: state
+    entity_id: person.jen
+    state: not_home
+  actions:
+  - action: script.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: script.turn_off_all_lights
   mode: single
