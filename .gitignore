@@ -61,3 +61,4 @@ docker-compose.yml
 homeassistant/custom_components/*
 !homeassistant/custom_components/README.md
 mosquitto/passwd_file
+homeassistant/www/community/lovelace-expander-card
