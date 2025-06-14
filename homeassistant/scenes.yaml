@@ -1,13 +1,13 @@
 - id: '1737317864051'
   name: Bedroom blinds top half open
   entities:
-    cover.smartwings_day_night_shades_outbound_bottom:
+    cover.bedroom_blinds_outbound_bottom:
       current_position: 1
       device_class: window
       friendly_name: Bedroom Blinds Outbound Bottom
       supported_features: 15
       state: open
-    cover.smartwings_day_night_shades_outbound_bottom_2:
+    cover.bedroom_blinds_outbound_bottom_2:
       current_position: 51
       device_class: window
       friendly_name: Bedroom Blinds Outbound Bottom (2)
@@ -17,13 +17,13 @@
 - id: '1737318045566'
   name: Bedroom blinds sunrise open
   entities:
-    cover.smartwings_day_night_shades_outbound_bottom:
+    cover.bedroom_blinds_outbound_bottom:
       current_position: 1
       device_class: window
       friendly_name: Bedroom Blinds Outbound Bottom
       supported_features: 15
       state: open
-    cover.smartwings_day_night_shades_outbound_bottom_2:
+    cover.bedroom_blinds_outbound_bottom_2:
       current_position: 80
       device_class: window
       friendly_name: Bedroom Blinds Outbound Bottom (2)
@@ -34,13 +34,13 @@
 - id: '1737318107604'
   name: Bedroom blinds closed
   entities:
-    cover.smartwings_day_night_shades_outbound_bottom:
+    cover.bedroom_blinds_outbound_bottom:
       current_position: 1
       device_class: window
       friendly_name: Bedroom Blinds Outbound Bottom
       supported_features: 15
       state: open
-    cover.smartwings_day_night_shades_outbound_bottom_2:
+    cover.bedroom_blinds_outbound_bottom_2:
       current_position: 100
       device_class: window
       friendly_name: Bedroom Blinds Outbound Bottom (2)
@@ -51,13 +51,13 @@
 - id: '1737318192231'
   name: Bedroom blinds open
   entities:
-    cover.smartwings_day_night_shades_outbound_bottom:
+    cover.bedroom_blinds_outbound_bottom:
       current_position: 100
       device_class: window
       friendly_name: Bedroom Blinds Outbound Bottom
       supported_features: 15
       state: open
-    cover.smartwings_day_night_shades_outbound_bottom_2:
+    cover.bedroom_blinds_outbound_bottom_2:
       current_position: 100
       device_class: window
       friendly_name: Bedroom Blinds Outbound Bottom (2)
@@ -81,6 +81,7 @@
       supported_features: 15
       state: open
   metadata: {}
+  icon: mdi:sun-snowflake-variant
 - id: '1737319788287'
   name: Living room blinds sunrise open
   entities:
