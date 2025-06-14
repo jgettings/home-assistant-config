@@ -18,3 +18,4 @@ https://community.home-assistant.io/t/sharing-your-configuration-on-github/19514
 - Ecovacs
 - More door/motion sensors for security
 - Presence detection
+

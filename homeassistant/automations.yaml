@@ -50,42 +50,6 @@
       entity_id:
       - scene.living_room_blinds_closed
   mode: single
-- id: '1737341124915'
-  alias: Laptop unplugged notification
-  description: ''
-  triggers:
-  - trigger: state
-    entity_id:
-    - sensor.jenslaptop_battery_powerline_status
-    from: Online
-    to: Offline
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 0
-  conditions: []
-  actions:
-  - action: notify.mobile_app_jen_s_phone
-    metadata: {}
-    data:
-      message: Laptop Unplugged for 5 minutes
-  mode: single
-- id: '1737341248636'
-  alias: Laptop battery below 50%
-  description: ''
-  triggers:
-  - trigger: numeric_state
-    entity_id:
-    - sensor.jenslaptop_battery_charge_remaining_percentage
-    above: 0
-    below: 49.9
-  conditions: []
-  actions:
-  - action: notify.mobile_app_jen_s_phone
-    metadata: {}
-    data:
-      message: Laptop battery below 50%! Plug it in!!!
-  mode: single
 - id: '1737775226721'
   alias: Bedtime
   description: Turn off lights
@@ -151,7 +115,7 @@
       seconds: 0
   conditions: []
   actions:
-  - action: notify.mobile_app_jen_s_phone
+  - action: notify.mobile_app_sm_g986u1
     metadata: {}
     data:
       message: Zwave Stick Disconnected
@@ -410,13 +374,13 @@
         Check blinds charge
 
         Clean heater filters'
-      list: todo.todo_list
+      list: todo.to_do
 - id: '1710947464947'
   alias: Clear todo items automatically
   description: ''
   triggers:
   - entity_id:
-    - todo.todo_list
+    - todo.to_do
     trigger: state
   conditions: []
   actions:
@@ -429,7 +393,7 @@
     data: {}
     target:
       entity_id:
-      - todo.todo_list
+      - todo.to_do
     action: todo.remove_completed_items
   mode: single
 - id: '1743278154096'

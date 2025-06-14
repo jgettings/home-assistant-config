@@ -58,7 +58,12 @@ wyze_config.ini
 www/tmp
 backups
 docker-compose.yml
+docker-compose-old.yml
 homeassistant/custom_components/*
 !homeassistant/custom_components/README.md
 mosquitto/passwd_file
 homeassistant/www/community/lovelace-expander-card
+
+zwave/.config-db
+zwave/*.jsonl
+*.tar

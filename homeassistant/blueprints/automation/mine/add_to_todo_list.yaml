@@ -79,7 +79,7 @@ action:
             item: '{{ repeat.item }}'
           target:
             entity_id: !input list
-  - service: notify.mobile_app_jen_s_phone
+  - service: notify.mobile_app_sm_g986u1
     metadata: {}
     data:
       message: 'New item(s) on {{ state_attr(listEntityId, "friendly_name") }} list'
