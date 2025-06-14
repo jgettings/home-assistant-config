@@ -4,14 +4,14 @@ services:
     image: homeassistant/home-assistant:latest
     container_name: homeassistant
     volumes:
-      - C:/Projects/docker/homeassistant:/config
+      - /srv/docker/homeassistant/homeassistant:/config
     environment:
       - PUID=1001
       - PGID=1001
       - TZ=America/New_York
     ports:
       - 8123:8123
-#    network_mode: host
+    network_mode: host
     restart: unless-stopped
 
   tunnel:
@@ -33,26 +33,25 @@ services:
       - 1883:1883
       - 9001:9001
 
-#   zwave:
-#     container_name: zwave
-#     image: zwavejs/zwave-js-ui:latest
-#     restart: unless-stopped
-#     volumes:
-#       - /srv/docker/zwave:/usr/src/app/store
-#     devices:
-#        - \\.\COM3:/dev/zwave
-# #      - /dev/serial/by-id/usb-0658_0200-if00:/dev/zwave
-#     ports:
-#       - 8091:8091
-#       - 3000:3000
+  zwave:
+    container_name: zwave
+    image: zwavejs/zwave-js-ui:latest
+    restart: unless-stopped
+    volumes:
+      - /srv/docker/homeassistant/zwave:/usr/src/app/store
+    devices:
+      - /dev/serial/by-id/usb-xxx:/dev/zwave
+    ports:
+      - 8091:8091
+      - 3000:3000
 
 
 # set trusted docker internal network
-# networks:
-#   default:
-#     name: homeassistant
-#     ipam:
-#       config:
-#         - subnet: 0.0.0.0
-#           ip_range: 0.0.0.0
-#           gateway: 0.0.0.0
+networks:
+  default:
+    name: homeassistant
+    ipam:
+      config:
+        - subnet: x.x.x.x
+          ip_range: x.x.x.x
+          gateway: x.x.x.x
