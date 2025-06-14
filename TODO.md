@@ -35,15 +35,7 @@
  - 4 - disable security for 15 mins (trash/delivery)
  - 4lp- leaving, arm away in 5 mins
 
-# Reminders/todo lists
-- Air filter clean/change
-- Washing machine filter clean
-- Heater filter clean
-
-
 
 
 # Other things to set up
-- Sonos
 - Google calendar
-- Chromecast
