@@ -63,6 +63,7 @@ homeassistant/custom_components/*
 !homeassistant/custom_components/README.md
 mosquitto/passwd_file
 homeassistant/www/community/lovelace-expander-card
+homeassistant/www/community/lovelace-slider-entity-row
 
 zwave/.config-db
 zwave/*.jsonl
