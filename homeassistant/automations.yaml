@@ -207,3 +207,40 @@
     target:
       entity_id: script.turn_off_all_lights
   mode: single
+- id: '1751746853620'
+  alias: Vitamin reminder clear on button
+  description: ''
+  triggers:
+  - platform: mqtt
+    topic: "shellies/shellybutton1-EC64C9C4EBA8/input_event/0"
+  conditions:
+    condition: template
+    value_template: "{{ trigger.payload_json.event == 'S' }}"
+  actions:
+  - action: notify.mobile_app_sm_g986u1
+    data:
+      message: clear_notification
+      data:
+        tag: vitamins
+        ttl: 0
+        priority: high
+  mode: single
+- id: '1751748932980'
+  alias: Vitamins Reminder
+  description: ''
+  triggers:
+  - trigger: time
+    at: 07:45:00
+  conditions: []
+  actions:
+  - action: notify.mobile_app_sm_g986u1
+    metadata: {}
+    data:
+      message: Take your vitamins!
+      data:
+        persistent: true
+        sticky: true
+        tag: vitamins
+        notification_icon: mdi:bottle-tonic-plus
+        color: purple
+  mode: single
