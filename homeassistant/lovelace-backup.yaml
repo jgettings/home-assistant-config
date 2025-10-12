@@ -1,0 +1,209 @@
+views:
+- title: Main
+  badges:
+    - type: entity
+      show_name: true
+      show_state: true
+      show_icon: true
+      entity: person.jen
+      name: Jen
+      show_entity_picture: true
+    - type: entity
+      show_name: false
+      show_state: true
+      show_icon: true
+      entity: sensor.shellyht_749db8_temperature
+      icon: mdi:home-city
+    - type: entity
+      show_name: false
+      show_state: true
+      show_icon: true
+      entity: weather.forecast_home
+      state_content: temperature
+    - type: entity
+      show_name: false
+      show_state: true
+      show_icon: true
+      entity: sensor.mail_ups_packages
+  sections:
+    - type: grid
+      cards:
+        - show_current: true
+          show_forecast: true
+          type: weather-forecast
+          entity: weather.forecast_home
+          forecast_type: daily
+          forecast_slots: 7
+          secondary_info_attribute: humidity
+        - type: media-control
+          entity: media_player.living_room_tv
+        - type: media-control
+          entity: media_player.sonos_move
+        - display_order: none
+          type: todo-list
+          entity: todo.to_do
+          title: To Do
+          hide_create: true
+          hide_completed: true
+    - type: grid
+      cards:
+        - camera_view: auto
+          fit_mode: cover
+          type: picture-glance
+          title: Living Room
+          image: /api/image/serve/be001dc4ed6206836538cfa8896d44c8/512x512
+          entities:
+            - entity: scene.living_room_blinds_open
+            - entity: scene.living_room_blinds_closed
+            - entity: scene.living_room_blinds_sunrise_open
+            - entity: scene.living_room_blinds_top_half_open
+            - entity: sensor.shellyht_749db8_temperature
+              show_state: true
+          entity: light.living_room
+          tap_action:
+            action: toggle
+        - type: entities
+          entities:
+            - type: custom:slider-entity-row
+              entity: cover.living_room_blinds_outbound_bottom_2
+              hide_state: true
+              name: Top
+              secondary_info: position
+              step: 1
+            - type: custom:slider-entity-row
+              entity: cover.living_room_blinds_outbound_bottom
+              name: Bottom
+              secondary_info: position
+              hide_state: true
+              step: 1
+          title: Living Room Blinds
+          show_header_toggle: false
+        - camera_view: auto
+          fit_mode: cover
+          type: picture-glance
+          title: Bedroom
+          image: /api/image/serve/0336a4b5ea16e9e4bdc22ace79f50932/512x512
+          entities:
+            - entity: scene.bedroom_blinds_open
+            - entity: scene.bedroom_blinds_closed
+            - entity: scene.bedroom_blinds_sunrise_open
+            - entity: scene.bedroom_blinds_top_half_open
+            - entity: sensor.shellyht_73f6ef_temperature
+              show_state: true
+          tap_action:
+            action: toggle
+          entity: light.bedroom
+        - type: entities
+          entities:
+            - type: custom:slider-entity-row
+              entity: cover.bedroom_blinds_outbound_bottom_2
+              hide_state: true
+              name: Top
+              secondary_info: position
+              step: 1
+            - type: custom:slider-entity-row
+              entity: cover.bedroom_blinds_outbound_bottom
+              name: Bottom
+              secondary_info: position
+              hide_state: true
+              step: 1
+          title: Bedroom Blinds
+          show_header_toggle: false
+    - type: grid
+      cards:
+        - type: heading
+          icon: mdi:package-variant-closed
+          heading: Mail and Packages
+          heading_style: subtitle
+        - type: entities
+          entities:
+            - entity: sensor.mail_packages_in_transit
+            - entity: sensor.mail_packages_delivered
+        - type: entity-filter
+          entities:
+            - entity: sensor.mail_usps_mail
+            - entity: sensor.mail_usps_packages
+            - entity: sensor.mail_usps_exception
+            - entity: sensor.mail_usps_delivering
+            - entity: sensor.mail_usps_delivered
+            - entity: sensor.mail_ups_packages
+            - entity: sensor.mail_ups_exception
+            - entity: sensor.mail_ups_delivering
+            - entity: sensor.mail_ups_delivered
+            - entity: sensor.mail_fedex_packages
+            - entity: sensor.mail_fedex_delivering
+            - entity: sensor.mail_fedex_delivered
+          state_filter:
+            - operator: '>'
+              value: 0
+          show_empty: false
+  type: sections
+  max_columns: 4
+  icon: mdi:home
+  cards: []
+  background:
+    opacity: 33
+    alignment: center
+    size: cover
+    repeat: repeat
+    attachment: fixed
+- type: panel
+  title: calendar 2
+  path: calendar-2
+  icon: mdi:calendar-week
+  cards:
+    - type: custom:week-planner-card
+      calendars:
+        - entity: calendar.jennifer_wystup_gmail_com
+          name: Jen's Calendar
+          color: cyan
+          icon: mdi:account
+          hideInLegend: false
+        - entity: calendar.birthdays
+          name: Birthdays
+          color: yellow
+          icon: mdi:cake-variant
+        - entity: calendar.holidays_in_united_states
+          name: Holidays
+          color: red
+          icon: mdi:pine-tree
+        - entity: calendar.jen_gettings_bubble_io
+          name: Work Main
+          color: purple
+          icon: mdi:briefcase-account
+        - entity: calendar.bubble_company_calendar
+          name: Bubble
+          color: purple
+          icon: mdi:chart-bubble
+        - entity: calendar.working_location_2
+          name: Working Location
+          color: gray
+          icon: mdi:train
+        - entity: calendar.on_call_feed_for_jen_gettings
+          name: On Call Incident.io
+          color: red
+          icon: mdi:fire
+      days: '35'
+      startingDayOffset: 0
+      hideWeekend: false
+      noCardBackground: true
+      compact: false
+      weather:
+        showCondition: true
+        showTemperature: true
+        showLowTemperature: true
+        useTwiceDaily: false
+        entity: weather.forecast_home
+      locale: en
+      showLocation: false
+      hidePastEvents: false
+      hideDaysWithoutEvents: false
+      hideTodayWithoutEvents: false
+      combineSimilarEvents: false
+      showLegend: true
+      startingDay: sunday
+      showNavigation: true
+      texts:
+        noEvents: ' '
+      legendToggle: true
+      timeFormat: t
