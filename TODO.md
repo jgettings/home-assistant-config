@@ -36,6 +36,3 @@
  - 4lp- leaving, arm away in 5 mins
 
 
-
-# Other things to set up
-- Google calendar
