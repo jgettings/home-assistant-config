@@ -39,29 +39,16 @@ views:
           entity: media_player.living_room_tv
         - type: media-control
           entity: media_player.sonos_move
-        - display_order: none
-          type: todo-list
-          entity: todo.to_do
-          title: To Do
-          hide_create: true
-          hide_completed: true
     - type: grid
       cards:
-        - camera_view: auto
-          fit_mode: cover
-          type: picture-glance
-          title: Living Room
-          image: /api/image/serve/be001dc4ed6206836538cfa8896d44c8/512x512
-          entities:
-            - entity: scene.living_room_blinds_open
-            - entity: scene.living_room_blinds_closed
-            - entity: scene.living_room_blinds_sunrise_open
-            - entity: scene.living_room_blinds_top_half_open
-            - entity: sensor.shellyht_749db8_temperature
-              show_state: true
-          entity: light.living_room
-          tap_action:
-            action: toggle
+        - alert_classes:
+            - motion
+            - moisture
+          sensor_classes:
+            - temperature
+            - humidity
+          type: area
+          area: living_room
         - type: entities
           entities:
             - type: custom:slider-entity-row
@@ -78,21 +65,32 @@ views:
               step: 1
           title: Living Room Blinds
           show_header_toggle: false
-        - camera_view: auto
-          fit_mode: cover
-          type: picture-glance
-          title: Bedroom
-          image: /api/image/serve/0336a4b5ea16e9e4bdc22ace79f50932/512x512
-          entities:
-            - entity: scene.bedroom_blinds_open
-            - entity: scene.bedroom_blinds_closed
-            - entity: scene.bedroom_blinds_sunrise_open
-            - entity: scene.bedroom_blinds_top_half_open
-            - entity: sensor.shellyht_73f6ef_temperature
-              show_state: true
-          tap_action:
-            action: toggle
-          entity: light.bedroom
+          footer:
+            type: buttons
+            entities:
+              - entity: scene.living_room_blinds_closed
+                name: Closed
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.living_room_blinds_closed
+              - entity: scene.living_room_blinds_sunrise_open
+                name: Sunrise
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.living_room_blinds_sunrise_open
+              - entity: scene.living_room_blinds_open
+                name: Open
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.living_room_blinds_open
+        - type: area
+          area: bedroom
         - type: entities
           entities:
             - type: custom:slider-entity-row
@@ -109,6 +107,36 @@ views:
               step: 1
           title: Bedroom Blinds
           show_header_toggle: false
+          footer:
+            type: buttons
+            entities:
+              - entity: scene.bedroom_blinds_closed
+                name: Closed
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.bedroom_blinds_closed
+              - entity: scene.bedroom_blinds_sunrise_open
+                name: Sunrise
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.bedroom_blinds_sunrise_open
+              - entity: scene.bedroom_blinds_open
+                name: Open
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.bedroom_blinds_open
+        - type: entities
+          entities:
+            - entity: light.kitchen
+            - entity: light.front_door
+          title: Other Lights
+          show_header_toggle: true
     - type: grid
       cards:
         - type: heading
@@ -137,6 +165,12 @@ views:
             - operator: '>'
               value: 0
           show_empty: false
+        - display_order: none
+          type: todo-list
+          entity: todo.to_do
+          title: To Do
+          hide_create: true
+          hide_completed: true
   type: sections
   max_columns: 4
   icon: mdi:home
@@ -207,3 +241,171 @@ views:
         noEvents: ' '
       legendToggle: true
       timeFormat: t
+- type: sections
+  title: Schedule
+  path: schedule
+  icon: mdi:clock-outline
+  sections:
+    - type: grid
+      cards:
+        - clock_size: small
+          show_seconds: false
+          type: clock
+          grid_options:
+            columns: full
+          title: Now
+        - type: heading
+          icon: ''
+          heading: Automation Schedule
+          heading_style: subtitle
+        - type: entity
+          entity: sensor.next_pre_wake_up_time
+          icon: mdi:alarm
+          grid_options:
+            columns: 18
+            rows: 2
+        - show_name: false
+          show_icon: true
+          type: button
+          entity: automation.pre_wake_up
+          icon: mdi:blinds-open
+          tap_action:
+            action: perform-action
+            perform_action: automation.trigger
+            target:
+              entity_id: automation.pre_wake_up
+            data:
+              skip_condition: true
+          grid_options:
+            columns: 6
+            rows: 2
+        - type: tile
+          features_position: bottom
+          vertical: false
+          entity: automation.vitamins_reminder
+          name: Vitamins Reminder at 7:45 AM
+          icon: mdi:bottle-tonic-plus
+          hide_state: true
+          grid_options:
+            columns: 18
+            rows: 1
+        - show_name: false
+          show_icon: true
+          type: button
+          entity: automation.vitamins_reminder
+          icon: mdi:bottle-tonic-plus
+          tap_action:
+            action: perform-action
+            perform_action: automation.trigger
+            target:
+              entity_id: automation.vitamins_reminder
+            data:
+              skip_condition: true
+          hold_action:
+            action: perform-action
+            perform_action: automation.trigger
+            target:
+              entity_id: automation.dismiss_vitamins_notification_on_button_press
+            data:
+              skip_condition: true
+          grid_options:
+            columns: 6
+            rows: 1
+        - type: tile
+          features_position: bottom
+          vertical: false
+          entity: automation.close_bedroom_blinds_when_the_sun_is_gone
+          hide_state: true
+          icon: mdi:blinds
+          grid_options:
+            columns: 18
+            rows: 1
+          name: Close bedroom blinds at 12:30 PM
+        - show_name: false
+          show_icon: true
+          type: button
+          entity: automation.close_bedroom_blinds_when_the_sun_is_gone
+          icon: mdi:blinds
+          tap_action:
+            action: perform-action
+            perform_action: automation.trigger
+            target:
+              entity_id: automation.close_bedroom_blinds_when_the_sun_is_gone
+            data:
+              skip_condition: true
+          grid_options:
+            columns: 6
+            rows: 1
+        - type: entity
+          entity: sun.sun
+          attribute: next_setting
+          icon: mdi:weather-sunset
+          grid_options:
+            columns: 18
+            rows: 2
+          name: Next Sunset
+        - show_name: false
+          show_icon: true
+          type: button
+          entity: automation.sunset
+          tap_action:
+            action: perform-action
+            perform_action: automation.trigger
+            target:
+              entity_id: automation.sunset
+            data:
+              skip_condition: true
+          grid_options:
+            columns: 6
+            rows: 2
+          icon: mdi:weather-sunset
+        - type: tile
+          entity: automation.bedtime
+          features_position: bottom
+          vertical: false
+          hide_state: true
+          name: Bedtime - 11pm if away
+          icon: mdi:bed
+          grid_options:
+            columns: 18
+            rows: 1
+        - show_name: false
+          show_icon: true
+          type: button
+          entity: automation.bedtime
+          icon: mdi:bed
+          tap_action:
+            action: perform-action
+            perform_action: automation.trigger
+            target:
+              entity_id: automation.bedtime
+            data:
+              skip_condition: true
+          grid_options:
+            columns: 6
+            rows: 1
+      column_span: 2
+  max_columns: 2
+  cards: []
+- type: sections
+  max_columns: 4
+  title: Status
+  path: status
+  icon: mdi:battery-60
+  sections:
+    - type: grid
+      cards:
+        - type: entities
+          entities:
+            - entity: sensor.bedroom_blinds_battery_level
+            - entity: sensor.bedroom_blinds_battery_level
+            - entity: sensor.entryway_battery
+            - entity: sensor.balcony_door_battery
+            - entity: sensor.hue_tap_dial_switch_1_battery
+            - entity: sensor.shellybutton1_ec64c9c4eba8_battery
+            - entity: sensor.shellyht_749db8_battery
+            - entity: sensor.shellyht_73f6ef_battery
+            - entity: sensor.sonos_move_battery
+            - entity: sensor.jen_s_phone_battery_level
+            - entity: sensor.jenslaptop_battery_charge_remaining_percentage
+          title: Battery Levels

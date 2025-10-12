@@ -9,6 +9,9 @@
     at:
       entity_id: sensor.jen_s_phone_next_alarm
       offset: -00:15:00
+    enabled: false
+  - trigger: time
+    at: sensor.next_pre_wake_up_time
   conditions:
   - condition: template
     value_template: '{{ this.attributes.last_triggered is none or this.attributes.last_triggered
@@ -27,6 +30,11 @@
     data: {}
     target:
       entity_id: scene.living_room_blinds_sunrise_open
+  - action: input_boolean.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.jen_is_awake
   mode: single
 - id: '1737319582212'
   alias: Sunset
@@ -68,13 +76,19 @@
     - condition: time
       after: '21:00:00'
     - condition: time
-      before: 04:00:00
+      before: 06:00:00
+    enabled: true
   actions:
   - action: script.turn_on
     metadata: {}
     data: {}
     target:
       entity_id: script.turn_off_all_lights
+  - action: input_boolean.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.jen_is_awake
   mode: single
 - id: '1737816951391'
   alias: Notify when zwave stick unavailable
@@ -113,7 +127,9 @@
     target:
       entity_id:
       - light.entry_overhead
-    data: {}
+    data:
+      brightness_pct: 75
+      color_temp_kelvin: 5087
     enabled: true
   - alias: Wait until there is no motion from device
     wait_for_trigger:
@@ -206,16 +222,21 @@
     data: {}
     target:
       entity_id: script.turn_off_all_lights
+  - action: input_boolean.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: input_boolean.jen_is_awake
   mode: single
 - id: '1751746853620'
   alias: Vitamin reminder clear on button
   description: ''
   triggers:
   - platform: mqtt
-    topic: "shellies/shellybutton1-EC64C9C4EBA8/input_event/0"
+    topic: shellies/shellybutton1-EC64C9C4EBA8/input_event/0
   conditions:
     condition: template
-    value_template: "{{ trigger.payload_json.event == 'S' }}"
+    value_template: '{{ trigger.payload_json.event == ''S'' }}'
   actions:
   - action: notify.mobile_app_sm_g986u1
     data:
@@ -243,4 +264,29 @@
         tag: vitamins
         notification_icon: mdi:bottle-tonic-plus
         color: purple
+  mode: single
+- id: '1760303160833'
+  alias: Night Light
+  description: ''
+  triggers:
+  - type: not_plugged_in
+    device_id: cfdaf66f7ed0a25704481e8c9464a2c4
+    entity_id: 6b106f2ddd5a476a202bbabd99488425
+    domain: binary_sensor
+    trigger: device
+  conditions:
+  - condition: state
+    entity_id: input_boolean.jen_is_awake
+    state: 'off'
+  - condition: state
+    entity_id: person.jen
+    state: home
+  actions:
+  - action: scene.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - scene.bedroom_nightlight
+      - scene.front_door_nightlight
   mode: single
